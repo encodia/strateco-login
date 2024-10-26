@@ -1,9 +1,10 @@
-import { Suspense, lazy } from "react";
 import type { ClassKey } from "keycloakify/login";
-import type { KcContext } from "./KcContext";
-import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "keycloakify/login/Template";
+import { Suspense, lazy } from "react";
+import { twMerge } from "tailwind-merge";
+import type { KcContext } from "./KcContext";
+import { useI18n } from "./i18n";
 const UserProfileFormFields = lazy(
     () => import("keycloakify/login/UserProfileFormFields")
 );
@@ -37,4 +38,8 @@ export default function KcPage(props: { kcContext: KcContext }) {
     );
 }
 
-const classes = {} satisfies { [key in ClassKey]?: string };
+const classes = {
+    kcFormHeaderClass: "",
+    kcBodyClass: twMerge(""),
+    kcHeaderWrapperClass: twMerge("text-3xl font-bold underline")
+} satisfies { [key in ClassKey]?: string };
