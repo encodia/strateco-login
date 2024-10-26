@@ -2,12 +2,14 @@ import type { ClassKey } from "keycloakify/login";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "keycloakify/login/Template";
 import { Suspense, lazy } from "react";
-import { twMerge } from "tailwind-merge";
 import type { KcContext } from "./KcContext";
 import { useI18n } from "./i18n";
+import "./index.css";
 const UserProfileFormFields = lazy(
     () => import("keycloakify/login/UserProfileFormFields")
 );
+
+const Login = lazy(() => import("./pages/Login"));
 
 const doMakeUserConfirmPassword = true;
 
@@ -20,6 +22,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
         <Suspense>
             {(() => {
                 switch (kcContext.pageId) {
+                    case "login.ftl":
+                        return (
+                            <Login
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={true}
+                            />
+                        );
                     default:
                         return (
                             <DefaultPage
@@ -39,7 +49,5 @@ export default function KcPage(props: { kcContext: KcContext }) {
 }
 
 const classes = {
-    kcFormHeaderClass: "",
-    kcBodyClass: twMerge(""),
-    kcHeaderWrapperClass: twMerge("text-3xl font-bold underline")
+    kcFormHeaderClass: ""
 } satisfies { [key in ClassKey]?: string };
