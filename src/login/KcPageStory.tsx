@@ -30,6 +30,8 @@ export function createKcPageStory<PageId extends KcContext["pageId"]>(params: {
     }) {
         const { kcContext: overrides } = props;
 
+        console.log("Legacy flag in createKcPageStory:");
+
         const kcContextMock = getKcContextMock({
             pageId,
             overrides

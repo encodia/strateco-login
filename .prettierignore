@@ -1,6 +1,6 @@
 node_modules/
 /dist/
-/dist_keycloak/
-/public/keycloakify-dev-resources/
+/build_keycloak/
+/public/keycloak-resources/
 /.vscode/
 /.yarn_home/

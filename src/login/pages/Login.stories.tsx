@@ -13,16 +13,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: () => <KcPageStory />
+    render: args => <KcPageStory {...args} />
 };
 
 export const WithInvalidCredential: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
-                locale: {
-                    currentLanguageTag: "it"
-                },
                 login: {
                     username: "johndoe"
                 },
@@ -46,8 +44,9 @@ export const WithInvalidCredential: Story = {
 };
 
 export const WithoutRegistration: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
                 realm: { registrationAllowed: false }
             }}
@@ -56,8 +55,9 @@ export const WithoutRegistration: Story = {
 };
 
 export const WithoutRememberMe: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
                 realm: { rememberMe: false }
             }}
@@ -66,8 +66,9 @@ export const WithoutRememberMe: Story = {
 };
 
 export const WithoutPasswordReset: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
                 realm: { resetPasswordAllowed: false }
             }}
@@ -76,8 +77,9 @@ export const WithoutPasswordReset: Story = {
 };
 
 export const WithEmailAsUsername: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
                 realm: { loginWithEmailAllowed: false }
             }}
@@ -86,8 +88,9 @@ export const WithEmailAsUsername: Story = {
 };
 
 export const WithPresetUsername: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
                 login: { username: "max.mustermann@mail.com" }
             }}
@@ -96,8 +99,9 @@ export const WithPresetUsername: Story = {
 };
 
 export const WithImmutablePresetUsername: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
                 auth: {
                     attemptedUsername: "max.mustermann@mail.com",
@@ -112,10 +116,59 @@ export const WithImmutablePresetUsername: Story = {
         />
     )
 };
-
-export const WithSocialProviders: Story = {
-    render: () => (
+export const WithOneSocialProvider: Story = {
+    render: args => (
         <KcPageStory
+            {...args}
+            kcContext={{
+                social: {
+                    displayInfo: true,
+                    providers: [
+                        {
+                            loginUrl: "google",
+                            alias: "google",
+                            providerId: "google",
+                            displayName: "Google",
+                            iconClasses: "fa fa-google"
+                        }
+                    ]
+                }
+            }}
+        />
+    )
+};
+export const WithTwoSocialProviders: Story = {
+    render: args => (
+        <KcPageStory
+            {...args}
+            kcContext={{
+                social: {
+                    displayInfo: true,
+                    providers: [
+                        {
+                            loginUrl: "google",
+                            alias: "google",
+                            providerId: "google",
+                            displayName: "Google",
+                            iconClasses: "fa fa-google"
+                        },
+                        {
+                            loginUrl: "microsoft",
+                            alias: "microsoft",
+                            providerId: "microsoft",
+                            displayName: "Microsoft",
+                            iconClasses: "fa fa-windows"
+                        }
+                    ]
+                }
+            }}
+        />
+    )
+};
+export const WithSocialProviders: Story = {
+    render: args => (
+        <KcPageStory
+            {...args}
             kcContext={{
                 social: {
                     displayInfo: true,
@@ -212,8 +265,9 @@ export const WithSocialProviders: Story = {
 };
 
 export const WithoutPasswordField: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
                 realm: { password: false }
             }}
@@ -222,141 +276,14 @@ export const WithoutPasswordField: Story = {
 };
 
 export const WithErrorMessage: Story = {
-    render: () => (
+    render: args => (
         <KcPageStory
+            {...args}
             kcContext={{
                 message: {
                     summary: "The time allotted for the connection has elapsed.<br/>The login process will restart from the beginning.",
                     type: "error"
                 }
-            }}
-        />
-    )
-};
-
-export const WithOneSocialProvider: Story = {
-    render: args => (
-        <KcPageStory
-            {...args}
-            kcContext={{
-                social: {
-                    displayInfo: true,
-                    providers: [
-                        {
-                            loginUrl: "google",
-                            alias: "google",
-                            providerId: "google",
-                            displayName: "Google",
-                            iconClasses: "fa fa-google"
-                        }
-                    ]
-                }
-            }}
-        />
-    )
-};
-
-export const WithTwoSocialProviders: Story = {
-    render: args => (
-        <KcPageStory
-            {...args}
-            kcContext={{
-                social: {
-                    displayInfo: true,
-                    providers: [
-                        {
-                            loginUrl: "google",
-                            alias: "google",
-                            providerId: "google",
-                            displayName: "Google",
-                            iconClasses: "fa fa-google"
-                        },
-                        {
-                            loginUrl: "microsoft",
-                            alias: "microsoft",
-                            providerId: "microsoft",
-                            displayName: "Microsoft",
-                            iconClasses: "fa fa-windows"
-                        }
-                    ]
-                }
-            }}
-        />
-    )
-};
-export const WithNoSocialProviders: Story = {
-    render: args => (
-        <KcPageStory
-            {...args}
-            kcContext={{
-                social: {
-                    displayInfo: true,
-                    providers: []
-                }
-            }}
-        />
-    )
-};
-export const WithMoreThanTwoSocialProviders: Story = {
-    render: args => (
-        <KcPageStory
-            {...args}
-            kcContext={{
-                social: {
-                    displayInfo: true,
-                    providers: [
-                        {
-                            loginUrl: "google",
-                            alias: "google",
-                            providerId: "google",
-                            displayName: "Google",
-                            iconClasses: "fa fa-google"
-                        },
-                        {
-                            loginUrl: "microsoft",
-                            alias: "microsoft",
-                            providerId: "microsoft",
-                            displayName: "Microsoft",
-                            iconClasses: "fa fa-windows"
-                        },
-                        {
-                            loginUrl: "facebook",
-                            alias: "facebook",
-                            providerId: "facebook",
-                            displayName: "Facebook",
-                            iconClasses: "fa fa-facebook"
-                        },
-                        {
-                            loginUrl: "twitter",
-                            alias: "twitter",
-                            providerId: "twitter",
-                            displayName: "Twitter",
-                            iconClasses: "fa fa-twitter"
-                        }
-                    ]
-                }
-            }}
-        />
-    )
-};
-export const WithSocialProvidersAndWithoutRememberMe: Story = {
-    render: args => (
-        <KcPageStory
-            {...args}
-            kcContext={{
-                social: {
-                    displayInfo: true,
-                    providers: [
-                        {
-                            loginUrl: "google",
-                            alias: "google",
-                            providerId: "google",
-                            displayName: "Google",
-                            iconClasses: "fa fa-google"
-                        }
-                    ]
-                },
-                realm: { rememberMe: false }
             }}
         />
     )

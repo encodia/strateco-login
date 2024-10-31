@@ -28,7 +28,14 @@ build/Release
 
 # Dependency directories
 node_modules
+# But allow node_modules in public/keycloak-resources/login/resources
+!public/keycloak-resources/login/resources/resources-common/node_modules/
+!docs/storybook/keycloak-resources/login/resources/resources-common/node_modules/
+
+
 jspm_packages
+
+
 
 # Optional npm cache directory
 .npm
