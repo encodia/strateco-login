@@ -1,32 +1,20 @@
-import { useEffect } from "react";
+import { GlobeAltIcon } from "@heroicons/react/24/outline";
+import { getKcClsx } from "keycloakify/login/lib/kcClsx";
+import type { TemplateProps } from "keycloakify/login/TemplateProps";
+import { PUBLIC_URL } from "keycloakify/PUBLIC_URL";
 import { assert } from "keycloakify/tools/assert";
 import { clsx } from "keycloakify/tools/clsx";
-import type { TemplateProps } from "keycloakify/login/TemplateProps";
-import { getKcClsx } from "keycloakify/login/lib/kcClsx";
-import { useInsertScriptTags } from "keycloakify/tools/useInsertScriptTags";
 import { useInsertLinkTags } from "keycloakify/tools/useInsertLinkTags";
+import { useInsertScriptTags } from "keycloakify/tools/useInsertScriptTags";
 import { useSetClassName } from "keycloakify/tools/useSetClassName";
+import { useEffect } from "react";
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../components/ui/dropdown-menu";
+import { ModeToggle } from "../components/ui/mode-toggle";
+import "../styles/global.css";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
-import { Button } from "../components/ui/button";
-import { ModeToggle } from "../components/ui/mode-toggle";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
-import "../styles/global.css";
-import { GlobeAltIcon } from "@heroicons/react/24/outline";
-import {
-    DropdownMenu,
-    DropdownMenuTrigger,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuCheckboxItem,
-    DropdownMenuRadioGroup,
-    DropdownMenuRadioItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuSub,
-    DropdownMenuSubTrigger,
-    DropdownMenuSubContent
-} from "../components/ui/dropdown-menu";
 
 export function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -173,15 +161,12 @@ export function Template(props: TemplateProps<KcContext, I18n>) {
         );
     };
     return (
-        <div
-            className="bg-background min-h-screen flex flex-col items-center justify-center prose dark:prose-invert max-w-none">
-
+        <div className="bg-background min-h-screen flex flex-col items-center justify-center prose dark:prose-invert max-w-none">
             <div id="kc-header-wrapper" className="text-center text-foreground hide md:visible">
                 {msgStr("loginTitleHtml", realm.displayNameHtml)}
             </div>
 
-            <img src={`${process.env.PUBLIC_URL}/img/logo.png`} width={300} alt="logo strateco"
-                 className="my-0 mx-auto mb-8" />
+            <img src={`${PUBLIC_URL}/img/logo.png`} width={300} alt="logo strateco" className="my-0 mx-auto mb-8" />
 
             <Card className="py-0 px-3  md:-[40rem] shadow-2xl w-full min-h-screen  md:w-[30rem] sm:min-h-fit ">
                 <CardContent className="space-y-8 pb-5 ">
@@ -196,8 +181,7 @@ export function Template(props: TemplateProps<KcContext, I18n>) {
                             ) : (
                                 <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
                                     <label id="kc-attempted-username">{auth.attemptedUsername}</label>
-                                    <a id="reset-login" href={url.loginRestartFlowUrl}
-                                       aria-label={msgStr("restartLoginTooltip")}>
+                                    <a id="reset-login" href={url.loginRestartFlowUrl} aria-label={msgStr("restartLoginTooltip")}>
                                         <div className="kc-login-tooltip">
                                             <i className={kcClsx("kcResetFlowIcon")}></i>
                                             <span className="kc-tooltip-text">{msg("restartLoginTooltip")}</span>
@@ -235,14 +219,10 @@ export function Template(props: TemplateProps<KcContext, I18n>) {
                                     )}
                                 >
                                     <div className="pf-c-alert__icon">
-                                        {message.type === "success" &&
-                                            <span className={kcClsx("kcFeedbackSuccessIcon")}></span>}
-                                        {message.type === "warning" &&
-                                            <span className={kcClsx("kcFeedbackWarningIcon")}></span>}
-                                        {message.type === "error" &&
-                                            <span className={kcClsx("kcFeedbackErrorIcon")}></span>}
-                                        {message.type === "info" &&
-                                            <span className={kcClsx("kcFeedbackInfoIcon")}></span>}
+                                        {message.type === "success" && <span className={kcClsx("kcFeedbackSuccessIcon")}></span>}
+                                        {message.type === "warning" && <span className={kcClsx("kcFeedbackWarningIcon")}></span>}
+                                        {message.type === "error" && <span className={kcClsx("kcFeedbackErrorIcon")}></span>}
+                                        {message.type === "info" && <span className={kcClsx("kcFeedbackInfoIcon")}></span>}
                                     </div>
                                     <span
                                         className="text-sm"
