@@ -174,7 +174,7 @@ export function Template(props: TemplateProps<KcContext, I18n>) {
                         {languageSelector()}
                         <ModeToggle />
                     </div>
-                    <header className="text-center  ">
+                    <header className="text-center">
                         {(() => {
                             const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
                                 <h1 id="kc-page-title">{headerNode}</h1>
@@ -199,7 +199,7 @@ export function Template(props: TemplateProps<KcContext, I18n>) {
                                                 {msg("requiredFields")}
                                             </span>
                                         </div>
-                                        <div className="col-md-10">{node}</div>
+                                        <div className="col-md-12">{node}</div>
                                     </div>
                                 );
                             }
